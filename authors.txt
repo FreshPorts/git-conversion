@@ -1,0 +1,6 @@
+dan = Dan Langille <dan@langille.org>
+dvl = Dan Langille <dan@langille.org>
+haroldp = Harold Paulson <haroldp@sierraweb.com>
+jcampbell = John P. Campbell <jcampbell@intacct.com>
+jpc = John P. Campbell <jpc@jpcampbell.com>
+(no author) = cvs2svn <cvs2svn@users.noreply.freshports.org>

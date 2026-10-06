@@ -1,0 +1,4 @@
+# Output of run-all.sh: the converted repositories, and logs
+/repos/
+/logs/
+.DS_Store

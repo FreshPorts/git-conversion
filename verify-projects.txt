@@ -1,0 +1,13 @@
+classes classes
+configuration configuration
+daemontools daemontools
+database-schema database-schema
+docs docs
+fwatch fwatch
+include include
+ingress/Verify ingress-verify
+ingress/modules ingress-modules
+ingress/scripts ingress-scripts
+packaging packaging-for-svn
+periodics periodics
+scripts.ARCHIVE scripts.ARCHIVE

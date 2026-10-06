@@ -1,0 +1,90 @@
+fp-listen
+=========
+
+fp-listen, the FreshPorts daemon that listens for database notifications
+and clears caches. Built and distributed as the FreeBSD package
+py-freshports-fp-listen (port: FreshPorts/ports py-freshports-fp-listen).
+
+This repository was split out of FreshPorts/daemontools, which was itself
+converted from the daemontools project in the freshports-1 Subversion
+repository (svn+ssh://svn.int.unixathome.org/freshports-1). README.md in
+FreshPorts/daemontools describes that conversion. The split is done by
+split-daemontools.sh in ~/src/freshports/git-conversion/.
+
+It replaces an earlier conversion, now FreshPorts/archive.fp-listen. Despite
+its name, that one held all of daemontools as of 2024-11-07, with SVN's
+trunk/, branches/ and tags/ as plain directories and no git tags. Its
+fp-listen content is identical to this repository's: branches/git/fp-listen
+matches main, trunk/fp-listen matches trunk, and the same 58 SVN revisions
+changed fp-listen in both. The one difference is fp-listen-1.0.1, which
+there still holds the nested copy described below.
+
+
+Where the code lived
+--------------------
+
+fp-listen was added as daemontools/trunk/fp-listen in r3765 (2006-09-07)
+and kept that name. When branches/git was created from trunk in r5376
+(2020-07-03), development continued on both:
+
+  branch   daemontools path            SVN revisions
+  ------   -------------------------   --------------------------------
+  main     branches/git/fp-listen      r3765 - r6116 (2006 - 2024-11-07)
+  trunk    trunk/fp-listen             r3765 - r5817 (2006 - 2021-09-10)
+
+The two share history up to r5375. Each commit keeps only fp-listen/,
+moved to the top of the repository; commits that did not touch it are
+dropped. Every commit keeps its git-svn-id: trailer, giving the original
+Subversion path and revision.
+
+
+Tags
+----
+
+There are three lines of releases. The two older lines both have a 1.0.x
+series, so they keep their SVN names; only the current line uses plain
+version numbers, which is what a port with USE_GITHUB expects.
+
+  trunk line, 2017-10-11 .. 2021-09-10, 21 tags, names unchanged:
+      fp-listen-1.0.0 .. fp-listen-1.3.4
+
+  git line, 2021-01-08 .. 2023-10-24, 10 tags, names unchanged:
+      fp-listen-git-1.0.0 .. fp-listen-git-1.0.9
+
+  current line, 2024-11-07, 3 tags, prefix dropped:
+      fp-listen-2.0.0 .. 2.0.2   ->   2.0.0 .. 2.0.2
+
+The trunk line has no fp-listen-1.0.2; none was made in SVN.
+
+Each tag is annotated with the tagger, date and message of the SVN
+revision that created it, and points at the commit for the revision it was
+copied from. Its tree was checked to be identical to the corresponding tag
+in FreshPorts/daemontools before it was created.
+
+Corrections carried over from the conversion:
+
+  - fp-listen-git-1.0.0 was created in r5570 by renaming the misnamed
+    fp-listen-git1.0.0 ("Properly name this tag"). Its contents are
+    branches/git/fp-listen at r5568.
+  - fp-listen-1.0.1 (created r4863) is the release as created. In r4895 a
+    second svn copy onto the existing tag nested a copy, fp-listen/, inside
+    it; that nested copy is not included.
+
+
+Releasing
+---------
+
+Previously cut-fp-listen.sh (in packaging-for-svn) tagged a release in
+SVN, exported it, and copied the tarball to pkg01. With this repository a
+release is a git tag named for the version; the port can fetch it with:
+
+  USE_GITHUB=	yes
+  GH_ACCOUNT=	FreshPorts
+  GH_PROJECT=	fp-listen
+
+
+Not converted
+-------------
+
+  - svn:ignore properties; there is no .gitignore.
+  - $Id$ keywords, which remain unexpanded as stored in SVN.

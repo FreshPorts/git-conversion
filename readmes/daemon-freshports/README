@@ -1,0 +1,86 @@
+daemon-freshports
+=================
+
+The FreshPorts freshports daemon, built and distributed as the FreeBSD
+package freshports-freshports (port: FreshPorts/ports freshports-freshports).
+
+This repository was split out of FreshPorts/daemontools, which was itself
+converted from the daemontools project in the freshports-1 Subversion
+repository (svn+ssh://svn.int.unixathome.org/freshports-1). README.md in
+FreshPorts/daemontools describes that conversion. The split is done by
+split-daemontools.sh in ~/src/freshports/git-conversion/.
+
+
+Where the code lived
+--------------------
+
+The daemon has been renamed several times. This repository follows it
+through each name, so its history starts on 2002-02-08:
+
+  SVN revisions   daemontools path                     notes
+  -------------   ----------------------------------   ----------------------
+  r888 - r5049    trunk/freshports                     the original daemon
+  r5050 - r5375   trunk/fp-daemon                      renamed in r5050
+  r5376 - r5387   branches/git/fp-daemon               branch created r5376
+  r5388 - r5415   branches/git/fp-freshports           renamed in r5388
+  r5416 onward    branches/git/freshports              renamed in r5416
+
+Each commit keeps only that directory, moved to the top of the repository;
+commits that did not touch it are dropped. Every commit keeps its
+git-svn-id: trailer, giving the original Subversion path and revision.
+
+daemon-ingress shares this history up to r5385. In r5386 the daemon was
+copied to branches/git/fp-ingress, which became the ingress daemon.
+fp-daemon and ingress_svn, which remain in FreshPorts/daemontools, also
+descend from it.
+
+
+Branches
+--------
+
+  main          branches/git, as traced above
+  FreshPorts2   the freshports directory of daemontools/branches/FreshPorts2
+                (2002-2004)
+
+
+Tags
+----
+
+The SVN tags form one version series under two names. The prefixes are
+dropped so that each tag name is the package version, which is what a port
+with USE_GITHUB expects:
+
+  SVN tag                        git tag           created
+  ----------------------------   ---------------   ------------------------
+  fp-freshports-2.0.0 .. 2.0.5   2.0.0 .. 2.0.5    2020-07-18 .. 2020-07-19
+  freshports-2.0.6 .. 2.0.16     2.0.6 .. 2.0.16   2020-07-19 .. 2026-03-17
+
+Each tag is annotated with the tagger, date and message of the SVN
+revision that created it, and points at the commit for the revision it was
+copied from. Its tree was checked to be identical to the corresponding tag
+in FreshPorts/daemontools before it was created.
+
+2.0.0 (fp-freshports-2.0.0, created r5392) is the release as created. In
+r5394 a second svn copy onto the existing tag nested a copy,
+tags/fp-freshports-2.0.0/fp-freshports/, inside it; that nested copy is
+not included.
+
+
+Releasing
+---------
+
+Previously cut-freshports-freshports (in packaging-for-svn) tagged a
+release in SVN, exported it, and copied the tarball to pkg01. With this
+repository a release is a git tag named for the version; the port can
+fetch it with:
+
+  USE_GITHUB=	yes
+  GH_ACCOUNT=	FreshPorts
+  GH_PROJECT=	daemon-freshports
+
+
+Not converted
+-------------
+
+  - svn:ignore properties; there is no .gitignore.
+  - $Id$ keywords, which remain unexpanded as stored in SVN.

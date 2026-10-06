@@ -1,0 +1,71 @@
+daemontools
+===========
+
+The remaining FreshPorts services: fp-daemon and ingress_svn.
+
+This repository was converted from the daemontools project in the
+freshports-1 Subversion repository (svn+ssh://svn.int.unixathome.org/
+freshports-1); see README.md for that conversion. Three of its services
+have since been split into repositories of their own, by
+split-daemontools.sh in ~/src/freshports/git-conversion/.
+
+
+What moved
+----------
+
+  directory     new repository                 FreeBSD package
+  -----------   ----------------------------   -----------------------
+  freshports/   FreshPorts/daemon-freshports   freshports-freshports
+  ingress/      FreshPorts/daemon-ingress      freshports-ingress
+  fp-listen/    FreshPorts/fp-listen           py-freshports-fp-listen
+
+FreshPorts/fp-listen replaces an earlier conversion, now
+FreshPorts/archive.fp-listen, which despite its name held all of
+daemontools as of 2024-11-07.
+
+Each is built and distributed as a separate package, so each now has its
+own repository and its own tags. Their history went with them, following
+each directory through its earlier names (fp-daemon, fp-freshports,
+fp-ingress); see the README in each new repository.
+
+The history here is not rewritten. fp-daemon and ingress_svn descend from
+the same code (trunk/freshports, then trunk/fp-daemon), so removing the
+moved directories from all history would remove their past too. Instead,
+one commit on main removes freshports/, ingress/ and fp-listen/; the
+older commits still contain them.
+
+
+Tags
+----
+
+The 56 tags for the moved services are deleted from this repository; each
+release now exists in one place only:
+
+  deleted here                            now in
+  -------------------------------------   -------------------------------
+  fp-freshports-2.0.0 .. 2.0.5            daemon-freshports 2.0.0 .. 2.0.5
+  freshports-2.0.6 .. 2.0.16              daemon-freshports 2.0.6 .. 2.0.16
+  fp-ingress-2.0.0 .. 2.0.2               daemon-ingress 2.0.0 .. 2.0.2
+  ingress-2.0.3, 2.0.4                    daemon-ingress 2.0.3, 2.0.4
+  fp-listen-1.0.0 .. 1.3.4 (21 tags)      fp-listen, same names
+  fp-listen-git-1.0.0 .. 1.0.9            fp-listen, same names
+  fp-listen-2.0.0 .. 2.0.2                fp-listen 2.0.0 .. 2.0.2
+
+These 22 tags remain:
+
+  fp-daemon-1.0.0 .. 1.0.3, fp-daemon-git-1.0.0
+  ingress_svn-1.0.0 .. 1.0.11
+  1.0.0, 1.0.1, FreshPorts-VuXML
+  freshports-services-1.0.2
+  freshports-services-   (named so in SVN, r5030; kept as is)
+
+
+Branches
+--------
+
+  main          daemontools/branches/git
+  trunk         daemontools/trunk
+  FreshPorts2   daemontools/branches/FreshPorts2
+
+All three are unchanged by the split, apart from the one removal commit
+on main.
